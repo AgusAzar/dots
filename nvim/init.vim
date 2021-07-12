@@ -59,6 +59,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'dense-analysis/ale'
 call plug#end()
 "prettier
 let g:prettier#config#config_precedence = 'file-override'
@@ -74,6 +75,12 @@ let g:user_emmet_leader_key=','
 let g:user_emmet_mode='i'
 "jsx-pretty
 let g:vim_jsx_pretty_colorful_config = 1 " default 0
+"Ale
+let g:ale_fixers = {
+\   'javascript': ['prettier'],
+\}
+let g:ale_fix_on_save = 1
+let g:ale_disable_lsp = 1
 "remaps
 imap <C-c> <Esc>
 nnoremap <C-L> :nohl<CR><C-L>
