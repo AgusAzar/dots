@@ -57,13 +57,9 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'dense-analysis/ale'
 call plug#end()
-"prettier
-let g:prettier#config#config_precedence = 'file-override'
-let g:prettier#autoformat_require_pragma = 0
 "airline
 let g:airline_powerline_fonts = 1
 let g:airline_theme='deus'
@@ -74,13 +70,21 @@ hi Normal guibg=NONE ctermbg=NONE
 let g:user_emmet_leader_key=','
 let g:user_emmet_mode='i'
 "jsx-pretty
-let g:vim_jsx_pretty_colorful_config = 1 " default 0
+let g:vim_jsx_pretty_colorful_config = 0 " default 0
 "Ale
 let g:ale_fixers = {
-\   'javascript': ['prettier'],
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'javascript': ['eslint','prettier'],
+\   'typescript': ['eslint', 'prettier'],
+\   'typescriptreact': ['eslint', 'prettier']
 \}
+let g:ale_javascript_prettier_options = '--single-quote --trailing-comma all --tab-width 4'
 let g:ale_fix_on_save = 1
 let g:ale_disable_lsp = 1
+"CoC
+let g:coc_global_extensions = [
+  \ 'coc-tsserver'
+  \ ]
 "remaps
 imap <C-c> <Esc>
 nnoremap <C-L> :nohl<CR><C-L>
@@ -89,6 +93,12 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
-nnoremap <Leader>p :Prettier<CR>
 nnoremap <Leader>f :GFiles<Cr>
+
+"undo break points
+inoremap , ,<C-g>u
+inoremap . .<C-g>u
+inoremap < <<C-g>u
+inoremap > ><C-g>u
