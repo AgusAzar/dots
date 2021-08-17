@@ -40,6 +40,10 @@ set bg=dark
 "stauts line
 set laststatus=2
 set noshowmode
+
+"clipboard
+set clipboard+=unnamedplus
+
 "Plugins
 call plug#begin('~/.config/nvim/plugged')
 "temas"
@@ -53,7 +57,9 @@ Plug 'mattn/emmet-vim'
 Plug 'pangloss/vim-javascript'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'jiangmiao/auto-pairs'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+"Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
 Plug 'junegunn/fzf.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -83,7 +89,8 @@ let g:ale_fix_on_save = 1
 let g:ale_disable_lsp = 1
 "CoC
 let g:coc_global_extensions = [
-  \ 'coc-tsserver'
+  \ 'coc-tsserver',
+  \ 'coc-clang'
   \ ]
 "remaps
 imap <C-c> <Esc>
@@ -95,7 +102,7 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
-nnoremap <Leader>f :GFiles<Cr>
+nnoremap <Leader>f <cmd>Telescope find_files<Cr>
 
 "undo break points
 inoremap , ,<C-g>u
