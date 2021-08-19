@@ -35,7 +35,6 @@ set nowritebackup
 set undodir=~/.nvim/undodir
 set undofile
 
-set bg=dark
 
 "stauts line
 set laststatus=2
@@ -51,6 +50,7 @@ Plug 'morhetz/gruvbox'
 Plug 'franbach/miramare'
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'joshdick/onedark.vim'
+Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 "plugins"
 Plug 'mattn/emmet-vim'
 "Plug 'jelera/vim-javascript-syntax'
@@ -70,8 +70,7 @@ call plug#end()
 let g:airline_powerline_fonts = 1
 let g:airline_theme='deus'
 "colorscheme
-colorscheme gruvbox
-hi Normal guibg=NONE ctermbg=NONE
+colorscheme tokyonight
 "emmet"
 let g:user_emmet_leader_key=','
 let g:user_emmet_mode='i'
@@ -90,7 +89,7 @@ let g:ale_disable_lsp = 1
 "CoC
 let g:coc_global_extensions = [
   \ 'coc-tsserver',
-  \ 'coc-clang'
+  \ 'coc-clangd'
   \ ]
 "remaps
 imap <C-c> <Esc>
