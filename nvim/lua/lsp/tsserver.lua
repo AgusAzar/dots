@@ -61,8 +61,8 @@ M.setup = function(on_attach, capabilities)
                 },
 
                 -- formatting
-                enable_formatting = false,
-                formatter = 'prettier_d_slim',
+                enable_formatting = true,
+                formatter = 'prettier',
                 formatter_config_fallback = nil,
 
                 -- parentheses completion
@@ -79,7 +79,7 @@ M.setup = function(on_attach, capabilities)
                 filter_out_diagnostics_by_code = {},
 
                 -- inlay hints
-                auto_inlay_hints = true,
+                auto_inlay_hints = false,
                 inlay_hints_highlight = "Comment",
                 inlay_hints_priority = 200, -- priority of the hint extmarks
                 inlay_hints_throttle = 150, -- throttle the inlay hint request
@@ -100,5 +100,21 @@ M.setup = function(on_attach, capabilities)
 
     end
     })
+
+    --local null_ls = require("null-ls")
+    --null_ls.setup({
+    --    sources = {
+    --        null_ls.builtins.diagnostics.eslint.with({
+    --            preffer_local = 'node_modules/.bin'
+    --        }), -- eslint or eslint_d
+    --        null_ls.builtins.code_actions.eslint.with({
+    --            preffer_local = 'node_modules/.bin'
+    --        }), -- eslint or eslint_d
+    --        null_ls.builtins.formatting.prettier.with({
+    --            preffer_local = 'node_modules/.bin'
+    --        }) -- prettier, eslint, eslint_d, or prettierd
+    --    },
+    --    on_attach = on_attach
+    --})
 end
 return M

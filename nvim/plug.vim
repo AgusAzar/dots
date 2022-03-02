@@ -13,6 +13,7 @@ Plug 'nvim-telescope/telescope.nvim'
 "lsp
 Plug 'neovim/nvim-lspconfig'
 Plug 'jose-elias-alvarez/nvim-lsp-ts-utils'
+Plug 'jose-elias-alvarez/null-ls.nvim'
 
 "Completion
 Plug 'hrsh7th/cmp-nvim-lsp'
