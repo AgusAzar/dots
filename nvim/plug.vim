@@ -15,6 +15,11 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'jose-elias-alvarez/nvim-lsp-ts-utils'
 Plug 'jose-elias-alvarez/null-ls.nvim'
 
+
+"OmniSharp
+Plug 'OmniSharp/omnisharp-vim'
+let g:OmniSharp_server_stdio = 1
+
 "Completion
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'

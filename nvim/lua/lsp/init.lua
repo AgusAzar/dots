@@ -73,7 +73,7 @@ local function on_attach(client, bufnr)
 end
 
 
-local servers = {'tsserver','diagnosticls'}
+local servers = {'tsserver','diagnosticls','clang'}
 
 for _, server in ipairs(servers) do
     require("lsp." .. server).setup(on_attach,capabilities)
