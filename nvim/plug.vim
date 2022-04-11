@@ -22,6 +22,7 @@ let g:OmniSharp_server_stdio = 1
 
 "Completion
 Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'williamboman/nvim-lsp-installer'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'L3MON4D3/LuaSnip'
