@@ -107,6 +107,7 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 export ANDROID_HOME=/home/agustin/Android/sdk/
 export ANDROID_SDK=$HOME/Android/Sdk
 export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:/opt/android-studio/bin
+export PATH="$PATH:$HOME/.yarn/bin"
 
 
 alias icat="kitty +kitten icat"
