@@ -13,7 +13,7 @@ local function format_progress_bar(bar)
     bar.forced_height = dpi(30)
     bar.shape = gears.shape.rounded_bar
     bar.bar_shape = gears.shape.rectangle
-    local w = wibox.widget{
+    local w = wibox.widget {
         bar,
         direction = 'east',
         layout = wibox.container.rotate,
@@ -37,7 +37,7 @@ weather_widget_description.font = "sans medium 14"
 local weather_widget_temperature = weather_widget:get_all_children()[3]
 weather_widget_temperature.font = "sans medium 14"
 
-local weather = wibox.widget{
+local weather = wibox.widget {
     {
         nil,
         weather_widget_description,
@@ -67,26 +67,26 @@ local temperature_bar = require("noodle.temperature_bar")
 local temperature = format_progress_bar(temperature_bar)
 temperature:buttons(
     gears.table.join(
-        awful.button({ }, 1, apps.temperature_monitor)
-))
+        awful.button({}, 1, apps.temperature_monitor)
+    ))
 
 local cpu_bar = require("noodle.cpu_bar")
 local cpu = format_progress_bar(cpu_bar)
 
 cpu:buttons(
     gears.table.join(
-        awful.button({ }, 1, apps.process_monitor),
-        awful.button({ }, 3, apps.process_monitor_gui)
-))
+        awful.button({}, 1, apps.process_monitor),
+        awful.button({}, 3, apps.process_monitor_gui)
+    ))
 
 local ram_bar = require("noodle.ram_bar")
 local ram = format_progress_bar(ram_bar)
 
 ram:buttons(
     gears.table.join(
-        awful.button({ }, 1, apps.process_monitor),
-        awful.button({ }, 3, apps.process_monitor_gui)
-))
+        awful.button({}, 1, apps.process_monitor),
+        awful.button({}, 3, apps.process_monitor_gui)
+    ))
 
 
 local brightness_bar = require("noodle.brightness_bar")
@@ -94,27 +94,27 @@ local brightness = format_progress_bar(brightness_bar)
 
 brightness:buttons(
     gears.table.join(
-        -- Left click - Toggle redshift
-        awful.button({ }, 1, apps.night_mode),
+    -- Left click - Toggle redshift
+        awful.button({}, 1, apps.night_mode),
         -- Right click - Reset brightness (Set to max)
-        awful.button({ }, 3, function ()
+        awful.button({}, 3, function()
             awful.spawn.with_shell("light -S 100")
         end),
         -- Scroll up - Increase brightness
-        awful.button({ }, 4, function ()
+        awful.button({}, 4, function()
             awful.spawn.with_shell("light -A 10")
         end),
         -- Scroll down - Decrease brightness
-        awful.button({ }, 5, function ()
+        awful.button({}, 5, function()
             awful.spawn.with_shell("light -U 10")
         end)
-))
+    ))
 
 local hours = wibox.widget.textclock("%H")
 local minutes = wibox.widget.textclock("%M")
 
-local make_little_dot = function (color)
-    return wibox.widget{
+local make_little_dot = function(color)
+    return wibox.widget {
         bg = color,
         forced_width = dpi(10),
         forced_height = dpi(10),
@@ -176,14 +176,14 @@ mpd_title.forced_height = dpi(22)
 mpd_artist.forced_height = dpi(16)
 
 mpd_song:buttons(gears.table.join(
-    awful.button({ }, 1, function ()
+    awful.button({}, 1, function()
         awful.spawn.with_shell("mpc -q toggle")
     end),
-    awful.button({ }, 3, apps.music),
-    awful.button({ }, 4, function ()
+    awful.button({}, 3, apps.music),
+    awful.button({}, 4, function()
         awful.spawn.with_shell("mpc -q prev")
     end),
-    awful.button({ }, 5, function ()
+    awful.button({}, 5, function()
         awful.spawn.with_shell("mpc -q next")
     end)
 ))
@@ -195,7 +195,7 @@ local search_icon = wibox.widget {
     widget = wibox.widget.textbox()
 }
 
-local reset_search_icon = function ()
+local reset_search_icon = function()
     search_icon.markup = helpers.colorize_text("", x.color3)
 end
 reset_search_icon()
@@ -214,7 +214,7 @@ local search_bar = wibox.widget {
     widget = wibox.container.background()
 }
 
-local search = wibox.widget{
+local search = wibox.widget {
     -- search_bar,
     {
         {
@@ -238,7 +238,7 @@ local search = wibox.widget{
 }
 
 local function generate_prompt_icon(icon, color)
-    return "<span font='icomoon 10' foreground='" .. color .."'>" .. icon .. "</span> "
+    return "<span font='icomoon 10' foreground='" .. color .. "'>" .. icon .. "</span> "
 end
 
 function sidebar_activate_prompt(action)
@@ -258,17 +258,17 @@ function sidebar_activate_prompt(action)
     end)
 end
 
-local prompt_is_active = function ()
+local prompt_is_active = function()
     -- The search icon is hidden and replaced by other icons
     -- when the prompt is running
     return not search_icon.visible
 end
 
 search:buttons(gears.table.join(
-    awful.button({ }, 1, function ()
+    awful.button({}, 1, function()
         sidebar_activate_prompt("run")
     end),
-    awful.button({ }, 3, function ()
+    awful.button({}, 3, function()
         sidebar_activate_prompt("web_search")
     end)
 ))
@@ -277,17 +277,17 @@ local volume_bar = require("noodle.volume_bar")
 local volume = format_progress_bar(volume_bar)
 
 volume:buttons(gears.table.join(
-    -- Left click - Mute / Unmute
-    awful.button({ }, 1, function ()
+-- Left click - Mute / Unmute
+    awful.button({}, 1, function()
         helpers.volume_control(0)
     end),
     -- Right click - Run or raise pavucontrol
-    awful.button({ }, 3, apps.volume),
+    awful.button({}, 3, apps.volume),
     -- Scroll - Increase / Decrease volume
-    awful.button({ }, 4, function () 
+    awful.button({}, 4, function()
         helpers.volume_control(2)
     end),
-    awful.button({ }, 5, function () 
+    awful.button({}, 5, function()
         helpers.volume_control(-2)
     end)
 ))
@@ -295,7 +295,7 @@ volume:buttons(gears.table.join(
 -- Battery
 local cute_battery_face = require("noodle.cute_battery_face")
 cute_battery_face:buttons(gears.table.join(
-    awful.button({ }, 1, apps.battery_monitor)
+    awful.button({}, 1, apps.battery_monitor)
 ))
 
 -- Create tooltip widget
@@ -326,7 +326,7 @@ local create_tooltip = function(w)
         adaptive_tooltip:set(1, tooltip)
         adaptive_tooltip.visible = true
     end)
-    w:connect_signal("mouse::leave", function ()
+    w:connect_signal("mouse::leave", function()
         adaptive_tooltip.visible = false
     end)
 
@@ -335,35 +335,35 @@ end
 
 local brightness_tooltip = create_tooltip(brightness_bar)
 awesome.connect_signal("evil::brightness", function(value)
-    brightness_tooltip.markup = "Your screen is <span foreground='" .. beautiful.brightness_bar_active_color .."'><b>" .. tostring(value) .. "%</b></span> bright"
+    brightness_tooltip.markup = "Your screen is <span foreground='" .. beautiful.brightness_bar_active_color .. "'><b>" .. tostring(value) .. "%</b></span> bright"
 end)
 
 local cpu_tooltip = create_tooltip(cpu_bar)
 awesome.connect_signal("evil::cpu", function(value)
-    cpu_tooltip.markup = "You are using <span foreground='" .. beautiful.cpu_bar_active_color .."'><b>" .. tostring(value) .. "%</b></span> of CPU"
+    cpu_tooltip.markup = "You are using <span foreground='" .. beautiful.cpu_bar_active_color .. "'><b>" .. tostring(value) .. "%</b></span> of CPU"
 end)
 
 local ram_tooltip = create_tooltip(ram_bar)
 awesome.connect_signal("evil::ram", function(value, _)
-    ram_tooltip.markup = "You are using <span foreground='" .. beautiful.ram_bar_active_color .."'><b>" .. string.format("%.1f", value / 1000) .. "G</b></span> of memory"
+    ram_tooltip.markup = "You are using <span foreground='" .. beautiful.ram_bar_active_color .. "'><b>" .. string.format("%.1f", value / 1000) .. "G</b></span> of memory"
 end)
 
 local volume_tooltip = create_tooltip(volume_bar)
 awesome.connect_signal("evil::volume", function(value, muted)
-    volume_tooltip.markup = "The volume is at <span foreground='" .. beautiful.volume_bar_active_color .."'><b>" .. tostring(value) .. "%</b></span>"
+    volume_tooltip.markup = "The volume is at <span foreground='" .. beautiful.volume_bar_active_color .. "'><b>" .. tostring(value) .. "%</b></span>"
     if muted then
-        volume_tooltip.markup = volume_tooltip.markup.." and <span foreground='" .. beautiful.volume_bar_active_color .."'><b>muted</b></span>"
+        volume_tooltip.markup = volume_tooltip.markup .. " and <span foreground='" .. beautiful.volume_bar_active_color .. "'><b>muted</b></span>"
     end
 end)
 
 local temperature_tooltip = create_tooltip(temperature_bar)
 awesome.connect_signal("evil::temperature", function(value)
-    temperature_tooltip.markup = "Your CPU temperature is at <span foreground='" .. beautiful.temperature_bar_active_color .."'><b>" .. tostring(value) .. "°C</b></span>"
+    temperature_tooltip.markup = "Your CPU temperature is at <span foreground='" .. beautiful.temperature_bar_active_color .. "'><b>" .. tostring(value) .. "°C</b></span>"
 end)
 
 local battery_tooltip = create_tooltip(cute_battery_face)
 awesome.connect_signal("evil::battery", function(value)
-    battery_tooltip.markup = "Your battery is at <span foreground='" .. beautiful.battery_bar_active_color .."'><b>" .. tostring(value) .. "%</b></span>"
+    battery_tooltip.markup = "Your battery is at <span foreground='" .. beautiful.battery_bar_active_color .. "'><b>" .. tostring(value) .. "%</b></span>"
 end)
 
 -- Add clickable mouse effects on some widgets
@@ -378,7 +378,7 @@ helpers.add_hover_cursor(cute_battery_face, "hand1")
 
 
 -- Create the sidebar
-sidebar = wibox({visible = false, ontop = true, type = "dock", screen = screen.primary})
+sidebar = wibox({ visible = false, ontop = true, type = "dock", screen = screen.primary })
 sidebar.bg = "#00000000" -- For anti aliasing
 sidebar.fg = beautiful.sidebar_fg or beautiful.wibar_fg or "#FFFFFF"
 sidebar.opacity = beautiful.sidebar_opacity or 1
@@ -394,8 +394,8 @@ end
 awful.placement.maximize_vertically(sidebar, { honor_workarea = true, margins = { top = beautiful.useless_gap * 2 } })
 
 sidebar:buttons(gears.table.join(
-    -- Middle click - Hide sidebar
-    awful.button({ }, 2, function ()
+-- Middle click - Hide sidebar
+    awful.button({}, 2, function()
         sidebar_hide()
     end)
 ))
@@ -421,15 +421,15 @@ end
 
 -- Hide sidebar when mouse leaves
 if user.sidebar.hide_on_mouse_leave then
-    sidebar:connect_signal("mouse::leave", function ()
+    sidebar:connect_signal("mouse::leave", function()
         sidebar_hide()
     end)
 end
 -- Activate sidebar by moving the mouse at the edge of the screen
 if user.sidebar.show_on_mouse_screen_edge then
-    local sidebar_activator = wibox({y = sidebar.y, width = 1, visible = true, ontop = false, opacity = 0, below = true, screen = screen.primary})
+    local sidebar_activator = wibox({ y = sidebar.y, width = 1, visible = true, ontop = false, opacity = 0, below = true, screen = screen.primary })
     sidebar_activator.height = sidebar.height
-    sidebar_activator:connect_signal("mouse::enter", function ()
+    sidebar_activator:connect_signal("mouse::enter", function()
         sidebar.visible = true
     end)
 
@@ -441,13 +441,13 @@ if user.sidebar.show_on_mouse_screen_edge then
 
     sidebar_activator:buttons(
         gears.table.join(
-            awful.button({ }, 4, function ()
+            awful.button({}, 4, function()
                 awful.tag.viewprev()
             end),
-            awful.button({ }, 5, function ()
+            awful.button({}, 5, function()
                 awful.tag.viewnext()
             end)
-    ))
+        ))
 end
 
 
@@ -484,7 +484,6 @@ sidebar:setup {
         { ----------- MIDDLE GROUP -----------
             {
                 helpers.vertical_pad(dpi(30)),
-                weather,
                 {
                     {
                         mpd_buttons,
@@ -517,7 +516,7 @@ sidebar:setup {
                 layout = wibox.layout.fixed.vertical
             },
             shape = helpers.prrect(beautiful.sidebar_border_radius, false, true, false, false),
-            bg = x.color0.."66",
+            bg = x.color0 .. "66",
             widget = wibox.container.background
         },
         { ----------- BOTTOM GROUP -----------
@@ -543,7 +542,7 @@ sidebar:setup {
                 bottom = dpi(30),
                 widget = wibox.container.margin
             },
-            bg = x.color0.."66",
+            bg = x.color0 .. "66",
             widget = wibox.container.background
         },
         layout = wibox.layout.align.vertical,

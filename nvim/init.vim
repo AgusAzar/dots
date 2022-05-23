@@ -76,6 +76,6 @@ inoremap < <<C-g>u
 inoremap > ><C-g>u
 
 lua <<EOF
-require('lsp')
 require('plugins')
+require('lsp')
 EOF

@@ -170,37 +170,11 @@ keys.globalkeys = gears.table.join(
         {description = "kill all visible clients for the current tag", group = "gaps"}
     ),
 
-    -- Resize focused client or layout factor
-    awful.key({ superkey, ctrlkey }, "Down", function (c)
-        helpers.resize_dwim(client.focus, "down")
-    end),
-    awful.key({ superkey, ctrlkey }, "Up", function (c)
-        helpers.resize_dwim(client.focus, "up")
-    end),
-    awful.key({ superkey, ctrlkey }, "Left", function (c)
-        helpers.resize_dwim(client.focus, "left")
-    end),
-    awful.key({ superkey, ctrlkey }, "Right", function (c)
-        helpers.resize_dwim(client.focus, "right")
-    end),
-    awful.key({ superkey, ctrlkey }, "j", function (c)
-        helpers.resize_dwim(client.focus, "down")
-    end),
-    awful.key({ superkey, ctrlkey }, "k", function (c)
-        helpers.resize_dwim(client.focus, "up")
-    end),
-    awful.key({ superkey, ctrlkey }, "h", function (c)
-        helpers.resize_dwim(client.focus, "left")
-    end),
-    awful.key({ superkey, ctrlkey }, "l", function (c)
-        helpers.resize_dwim(client.focus, "right")
-    end),
-
     -- No need for these (single screen setup)
-    --awful.key({ superkey, ctrlkey }, "j", function () awful.screen.focus_relative( 1) end,
-    --{description = "focus the next screen", group = "screen"}),
-    --awful.key({ superkey, ctrlkey }, "k", function () awful.screen.focus_relative(-1) end,
-    --{description = "focus the previous screen", group = "screen"}),
+    awful.key({ superkey, ctrlkey }, "l", function () awful.screen.focus_relative( 1) end,
+    {description = "focus the next screen", group = "screen"}),
+    awful.key({ superkey, ctrlkey }, "h", function () awful.screen.focus_relative(-1) end,
+    {description = "focus the previous screen", group = "screen"}),
     
     -- Urgent or Undo:
     -- Jump to urgent client or (if there is no such client) go back
