@@ -30,9 +30,6 @@ Plug 'L3MON4D3/LuaSnip'
 "auto pairs
 Plug 'windwp/nvim-autopairs'
 
-"Web snipets
-Plug 'mattn/emmet-vim'
-
 "Icons
 Plug 'kyazdani42/nvim-web-devicons'
 

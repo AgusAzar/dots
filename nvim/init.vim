@@ -59,9 +59,6 @@ set clipboard+=unnamedplus
 runtime ./plug.vim
 "colorscheme
 colorscheme gruvbox
-"emmet"
-let g:user_emmet_leader_key=','
-let g:user_emmet_mode='i'
 "remaps
 imap <C-c> <Esc>
 nnoremap <C-L> :nohl<CR><C-L>
