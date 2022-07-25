@@ -1,4 +1,4 @@
-local plugins = {'lsp_installer','autopairs','cmp', 'lualine','telescope','treesitter'}
+local plugins = { 'lsp_installer', 'autopairs', 'lspconfig', 'cmp', 'lualine', 'telescope', 'treesitter' }
 for _, plugin in ipairs(plugins) do
-    require("plugins." .. plugin)
+  require("plugins." .. plugin)
 end

@@ -12,6 +12,7 @@ Plug 'nvim-telescope/telescope.nvim'
 
 "lsp
 Plug 'neovim/nvim-lspconfig'
+Plug 'williamboman/nvim-lsp-installer'
 Plug 'jose-elias-alvarez/nvim-lsp-ts-utils'
 Plug 'jose-elias-alvarez/null-ls.nvim'
 
@@ -21,10 +22,9 @@ Plug 'OmniSharp/omnisharp-vim'
 let g:OmniSharp_server_stdio = 1
 
 "Completion
-Plug 'hrsh7th/cmp-nvim-lsp'
-Plug 'williamboman/nvim-lsp-installer'
-Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/nvim-cmp'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
 Plug 'L3MON4D3/LuaSnip'
 
 "auto pairs

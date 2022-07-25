@@ -14,9 +14,9 @@ set backspace=indent,eol,start
 "tabs
 filetype plugin indent on
 syntax enable
-set tabstop=4
+set tabstop=2
 set expandtab
-set shiftwidth=4
+set shiftwidth=2
 set softtabstop=0
 set ai "Auto indent
 set si "Smart indent
@@ -74,5 +74,4 @@ inoremap > ><C-g>u
 
 lua <<EOF
 require('plugins')
-require('lsp')
 EOF
