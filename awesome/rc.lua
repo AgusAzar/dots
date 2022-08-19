@@ -809,3 +809,4 @@ end)
 
 collectgarbage("setpause", 110)
 collectgarbage("setstepmul", 1000)
+awful.spawn("picom")
