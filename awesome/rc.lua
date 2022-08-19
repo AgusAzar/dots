@@ -12,128 +12,128 @@
 
 
 local themes = {
-    "manta", -- 1 --
-    "lovelace", -- 2 --
-    "skyfall", -- 3 --
-    "ephemeral", -- 4 --
-    "amarena", -- 5 --
+  "manta", -- 1 --
+  "lovelace", -- 2 --
+  "skyfall", -- 3 --
+  "ephemeral", -- 4 --
+  "amarena", -- 5 --
 }
 -- Change this number to use a different theme
 local theme = themes[5]
 -- ===================================================================
 -- Affects the window appearance: titlebar, titlebar buttons...
 local decoration_themes = {
-    "lovelace", -- 1 -- Standard titlebar with 3 buttons (close, max, min)
-    "skyfall", -- 2 -- No buttons, only title
-    "ephemeral", -- 3 -- Text-generated titlebar buttons
+  "lovelace", -- 1 -- Standard titlebar with 3 buttons (close, max, min)
+  "skyfall", -- 2 -- No buttons, only title
+  "ephemeral", -- 3 -- Text-generated titlebar buttons
 }
 local decoration_theme = decoration_themes[2]
 -- ===================================================================
 -- Statusbar themes. Multiple bars can be declared in each theme.
 local bar_themes = {
-    "manta", -- 1 -- Taglist, client counter, date, time, layout
-    "lovelace", -- 2 -- Start button, taglist, layout
-    "skyfall", -- 3 -- Weather, taglist, window buttons, pop-up tray
-    "ephemeral", -- 4 -- Taglist, start button, tasklist, and more buttons
-    "amarena", -- 5 -- Minimal taglist and dock with autohide
+  "manta", -- 1 -- Taglist, client counter, date, time, layout
+  "lovelace", -- 2 -- Start button, taglist, layout
+  "skyfall", -- 3 -- Weather, taglist, window buttons, pop-up tray
+  "ephemeral", -- 4 -- Taglist, start button, tasklist, and more buttons
+  "amarena", -- 5 -- Minimal taglist and dock with autohide
 }
 local bar_theme = bar_themes[4]
 
 -- ===================================================================
 -- Affects which icon theme will be used by widgets that display image icons.
 local icon_themes = {
-    "linebit", -- 1 -- Neon + outline
-    "drops", -- 2 -- Pastel + filled
+  "linebit", -- 1 -- Neon + outline
+  "drops", -- 2 -- Pastel + filled
 }
 local icon_theme = icon_themes[1]
 -- ===================================================================
 local notification_themes = {
-    "lovelace", -- 1 -- Plain with standard image icons
-    "ephemeral", -- 2 -- Outlined text icons and a rainbow stripe
-    "amarena", -- 3 -- Filled text icons on the right, text on the left
+  "lovelace", -- 1 -- Plain with standard image icons
+  "ephemeral", -- 2 -- Outlined text icons and a rainbow stripe
+  "amarena", -- 3 -- Filled text icons on the right, text on the left
 }
 local notification_theme = notification_themes[3]
 -- ===================================================================
 local sidebar_themes = {
-    "lovelace", -- 1 -- Uses image icons
-    "amarena", -- 2 -- Text-only (consumes less RAM)
+  "lovelace", -- 1 -- Uses image icons
+  "amarena", -- 2 -- Text-only (consumes less RAM)
 }
 local sidebar_theme = sidebar_themes[2]
 -- ===================================================================
 local dashboard_themes = {
-    "skyfall", -- 1 --
-    "amarena", -- 2 -- Displays coronavirus stats
+  "skyfall", -- 1 --
+  "amarena", -- 2 -- Displays coronavirus stats
 }
 local dashboard_theme = dashboard_themes[2]
 -- ===================================================================
 local exit_screen_themes = {
-    "lovelace", -- 1 -- Uses image icons
-    "ephemeral", -- 2 -- Uses text-generated icons (consumes less RAM)
+  "lovelace", -- 1 -- Uses image icons
+  "ephemeral", -- 2 -- Uses text-generated icons (consumes less RAM)
 }
 local exit_screen_theme = exit_screen_themes[2]
 -- ===================================================================
 -- User variables and preferences
 user = {
-    -- >> Default applications <<
-    -- Check apps.lua for more
-    terminal = "kitty -1",
-    floating_terminal = "kitty -1",
-    browser = "brave",
-    file_manager = "kitty ",
-    editor = "kitty -1 --class editor -e nvim",
-    email_client = "brave www.gmail.com",
-    music_client = "brave www.youtube.com",
+  -- >> Default applications <<
+  -- Check apps.lua for more
+  terminal = "kitty -1",
+  floating_terminal = "kitty -1",
+  browser = "brave",
+  file_manager = "kitty ",
+  editor = "kitty -1 --class editor -e nvim",
+  email_client = "brave www.gmail.com",
+  music_client = "brave www.youtube.com",
 
-    -- >> Web Search <<
-    web_search_cmd = "xdg-open https://www.google.com/search?q=",
+  -- >> Web Search <<
+  web_search_cmd = "xdg-open https://www.google.com/search?q=",
 
-    -- >> User profile <<
-    profile_picture = os.getenv("HOME") .. "/.config/awesome/profile.png",
+  -- >> User profile <<
+  profile_picture = os.getenv("HOME") .. "/.config/awesome/profile.png",
 
-    -- Directories with fallback values
-    dirs = {
-        downloads = os.getenv("XDG_DOWNLOAD_DIR") or "~/Downloads",
-        documents = os.getenv("XDG_DOCUMENTS_DIR") or "~/Documents",
-        music = os.getenv("XDG_MUSIC_DIR") or "~/Music",
-        pictures = os.getenv("XDG_PICTURES_DIR") or "~/Pictures",
-        videos = os.getenv("XDG_VIDEOS_DIR") or "~/Videos",
-        -- Make sure the directory exists so that your screenshots
-        -- are not lost
-        screenshots = os.getenv("XDG_SCREENSHOTS_DIR") or "~/Pictures/Screenshots",
-    },
+  -- Directories with fallback values
+  dirs = {
+    downloads = os.getenv("XDG_DOWNLOAD_DIR") or "~/Downloads",
+    documents = os.getenv("XDG_DOCUMENTS_DIR") or "~/Documents",
+    music = os.getenv("XDG_MUSIC_DIR") or "~/Music",
+    pictures = os.getenv("XDG_PICTURES_DIR") or "~/Pictures",
+    videos = os.getenv("XDG_VIDEOS_DIR") or "~/Videos",
+    -- Make sure the directory exists so that your screenshots
+    -- are not lost
+    screenshots = os.getenv("XDG_SCREENSHOTS_DIR") or "~/Pictures/Screenshots",
+  },
 
-    -- >> Sidebar <<
-    sidebar = {
-        hide_on_mouse_leave = true,
-        show_on_mouse_screen_edge = true,
-    },
+  -- >> Sidebar <<
+  sidebar = {
+    hide_on_mouse_leave = true,
+    show_on_mouse_screen_edge = true,
+  },
 
-    -- >> Lock screen <<
-    -- This password will ONLY be used if you have not installed
-    -- https://github.com/RMTT/lua-pam
-    -- as described in the README instructions
-    -- Leave it empty in order to unlock with just the Enter key.
-    lock_screen_custom_password = "",
+  -- >> Lock screen <<
+  -- This password will ONLY be used if you have not installed
+  -- https://github.com/RMTT/lua-pam
+  -- as described in the README instructions
+  -- Leave it empty in order to unlock with just the Enter key.
+  lock_screen_custom_password = "",
 
-    -- >> Battery <<
-    -- You will receive notifications when your battery reaches these
-    -- levels.
-    battery_threshold_low = 20,
-    battery_threshold_critical = 5,
+  -- >> Battery <<
+  -- You will receive notifications when your battery reaches these
+  -- levels.
+  battery_threshold_low = 20,
+  battery_threshold_critical = 5,
 
-    -- >> Weather <<
-    -- Get your key and find your city id at
-    -- https://openweathermap.org/
-    -- (You will need to make an account!)
-    openweathermap_key = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-    openweathermap_city_id = "yyyyyy",
-    -- > Use "metric" for Celcius, "imperial" for Fahrenheit
-    weather_units = "metric",
+  -- >> Weather <<
+  -- Get your key and find your city id at
+  -- https://openweathermap.org/
+  -- (You will need to make an account!)
+  openweathermap_key = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+  openweathermap_city_id = "yyyyyy",
+  -- > Use "metric" for Celcius, "imperial" for Fahrenheit
+  weather_units = "metric",
 
-    -- >> Coronavirus <<
-    -- Country to check for corona statistics
-    -- Uses the https://corona-stats.online API
-    coronavirus_country = "argentina",
+  -- >> Coronavirus <<
+  -- Country to check for corona statistics
+  -- Uses the https://corona-stats.online API
+  coronavirus_country = "argentina",
 }
 -- ===================================================================
 
@@ -150,25 +150,25 @@ local xrdb = beautiful.xresources.get_current_theme()
 dpi = beautiful.xresources.apply_dpi
 -- Make xresources colors global
 x = {
-    --           xrdb variable
-    background = xrdb.background,
-    foreground = xrdb.foreground,
-    color0     = xrdb.color0,
-    color1     = xrdb.color1,
-    color2     = xrdb.color2,
-    color3     = xrdb.color3,
-    color4     = xrdb.color4,
-    color5     = xrdb.color5,
-    color6     = xrdb.color6,
-    color7     = xrdb.color7,
-    color8     = xrdb.color8,
-    color9     = xrdb.color9,
-    color10    = xrdb.color10,
-    color11    = xrdb.color11,
-    color12    = xrdb.color12,
-    color13    = xrdb.color13,
-    color14    = xrdb.color14,
-    color15    = xrdb.color15,
+  --           xrdb variable
+  background = xrdb.background,
+  foreground = xrdb.foreground,
+  color0     = xrdb.color0,
+  color1     = xrdb.color1,
+  color2     = xrdb.color2,
+  color3     = xrdb.color3,
+  color4     = xrdb.color4,
+  color5     = xrdb.color5,
+  color6     = xrdb.color6,
+  color7     = xrdb.color7,
+  color8     = xrdb.color8,
+  color9     = xrdb.color9,
+  color10    = xrdb.color10,
+  color11    = xrdb.color11,
+  color12    = xrdb.color12,
+  color13    = xrdb.color13,
+  color14    = xrdb.color14,
+  color15    = xrdb.color15,
 }
 
 -- Load AwesomeWM libraries
@@ -185,11 +185,11 @@ beautiful.init(theme_dir .. "theme.lua")
 -- Error handling
 -- ===================================================================
 naughty.connect_signal("request::display_error", function(message, startup)
-    naughty.notification {
-        urgency = "critical",
-        title   = "Oops, an error happened" .. (startup and " during startup!" or "!"),
-        message = message
-    }
+  naughty.notification {
+    urgency = "critical",
+    title   = "Oops, an error happened" .. (startup and " during startup!" or "!"),
+    message = message
+  }
 end)
 
 -- Features
@@ -247,37 +247,37 @@ screen_height = awful.screen.focused().geometry.height
 -- ===================================================================
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
-    awful.layout.suit.tile,
-    awful.layout.suit.floating,
-    awful.layout.suit.max,
-    awful.layout.suit.spiral,
-    awful.layout.suit.spiral.dwindle,
-    awful.layout.suit.tile.top,
-    awful.layout.suit.fair,
-    awful.layout.suit.fair.horizontal,
-    awful.layout.suit.tile.left,
-    awful.layout.suit.tile.bottom,
-    awful.layout.suit.max.fullscreen,
-    awful.layout.suit.corner.nw,
-    awful.layout.suit.magnifier,
-    awful.layout.suit.corner.ne,
-    awful.layout.suit.corner.sw,
-    awful.layout.suit.corner.se,
+  awful.layout.suit.tile,
+  awful.layout.suit.floating,
+  awful.layout.suit.max,
+  awful.layout.suit.spiral,
+  awful.layout.suit.spiral.dwindle,
+  awful.layout.suit.tile.top,
+  awful.layout.suit.fair,
+  awful.layout.suit.fair.horizontal,
+  awful.layout.suit.tile.left,
+  awful.layout.suit.tile.bottom,
+  awful.layout.suit.max.fullscreen,
+  awful.layout.suit.corner.nw,
+  awful.layout.suit.magnifier,
+  awful.layout.suit.corner.ne,
+  awful.layout.suit.corner.sw,
+  awful.layout.suit.corner.se,
 }
 
 -- Wallpaper
 -- ===================================================================
 local function set_wallpaper(s)
-    -- Wallpaper
-    if beautiful.wallpaper then
-        awful.spawn.with_shell(os.getenv("HOME") .. "/.fehbg")
-    end
+  -- Wallpaper
+  if beautiful.wallpaper then
+    awful.spawn.with_shell(os.getenv("HOME") .. "/.fehbg")
+  end
 end
 
 -- Set wallpaper
 awful.screen.connect_for_each_screen(function(s)
-    -- Wallpaper
-    set_wallpaper(s)
+  -- Wallpaper
+  set_wallpaper(s)
 end)
 
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
@@ -286,385 +286,385 @@ screen.connect_signal("property::geometry", set_wallpaper)
 -- Tags
 -- ===================================================================
 awful.screen.connect_for_each_screen(function(s)
-    -- Each screen has its own tag table.
-    local l = awful.layout.suit -- Alias to save time :)
-    -- Tag layouts
-    local layouts = {
-        l.spiral,
-        l.spiral,
-        l.spiral,
-        l.spiral,
-        l.spiral,
-        l.spiral,
-        l.spiral,
-        l.spiral,
-        l.spiral,
-        l.spiral
-    }
+  -- Each screen has its own tag table.
+  local l = awful.layout.suit -- Alias to save time :)
+  -- Tag layouts
+  local layouts = {
+    l.spiral,
+    l.spiral,
+    l.spiral,
+    l.spiral,
+    l.spiral,
+    l.spiral,
+    l.spiral,
+    l.spiral,
+    l.spiral,
+    l.spiral
+  }
 
-    -- Tag names
-    local tagnames = beautiful.tagnames or { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }
-    -- Create all tags at once (without seperate configuration for each tag)
-    awful.tag(tagnames, s, layouts)
+  -- Tag names
+  local tagnames = beautiful.tagnames or { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }
+  -- Create all tags at once (without seperate configuration for each tag)
+  awful.tag(tagnames, s, layouts)
 
-    -- Create tags with seperate configuration for each tag
-    -- awful.tag.add(tagnames[1], {
-    --     layout = layouts[1],
-    --     screen = s,
-    --     master_width_factor = 0.6,
-    --     selected = true,
-    -- })
-    -- ...
+  -- Create tags with seperate configuration for each tag
+  -- awful.tag.add(tagnames[1], {
+  --     layout = layouts[1],
+  --     screen = s,
+  --     master_width_factor = 0.6,
+  --     selected = true,
+  -- })
+  -- ...
 end)
 
 -- Determines how floating clients should be placed
 local floating_client_placement = function(c)
-    -- If the layout is floating or there are no other visible
-    -- clients, center client
-    if awful.layout.get(mouse.screen) ~= awful.layout.suit.floating or #mouse.screen.clients == 1 then
-        return awful.placement.centered(c, { honor_padding = true, honor_workarea = true })
-    end
+  -- If the layout is floating or there are no other visible
+  -- clients, center client
+  if awful.layout.get(mouse.screen) ~= awful.layout.suit.floating or #mouse.screen.clients == 1 then
+    return awful.placement.centered(c, { honor_padding = true, honor_workarea = true })
+  end
 
-    -- Else use this placement
-    local p = awful.placement.no_overlap + awful.placement.no_offscreen
-    return p(c, { honor_padding = true, honor_workarea = true, margins = beautiful.useless_gap * 2 })
+  -- Else use this placement
+  local p = awful.placement.no_overlap + awful.placement.no_offscreen
+  return p(c, { honor_padding = true, honor_workarea = true, margins = beautiful.useless_gap * 2 })
 end
 
 local centered_client_placement = function(c)
-    return gears.timer.delayed_call(function()
-        awful.placement.centered(c, { honor_padding = true, honor_workarea = true })
-    end)
+  return gears.timer.delayed_call(function()
+    awful.placement.centered(c, { honor_padding = true, honor_workarea = true })
+  end)
 end
 
 -- Rules
 -- ===================================================================
 -- Rules to apply to new clients (through the "manage" signal).
 awful.rules.rules = {
-    {
-        -- All clients will match this rule.
-        rule = {},
-        properties = {
-            border_width = beautiful.border_width,
-            border_color = beautiful.border_normal,
-            focus = awful.client.focus.filter,
-            raise = true,
-            keys = keys.clientkeys,
-            buttons = keys.clientbuttons,
-            -- screen = awful.screen.preferred,
-            screen = awful.screen.focused,
-            size_hints_honor = false,
-            honor_workarea = true,
-            honor_padding = true,
-            maximized = false,
-            --titlebars_enabled = beautiful.titlebars_enabled,
-            titlebars_enabled = false,
-            maximized_horizontal = false,
-            maximized_vertical = false,
-            placement = floating_client_placement
-        },
+  {
+    -- All clients will match this rule.
+    rule = {},
+    properties = {
+      border_width = beautiful.border_width,
+      border_color = beautiful.border_normal,
+      focus = awful.client.focus.filter,
+      raise = true,
+      keys = keys.clientkeys,
+      buttons = keys.clientbuttons,
+      -- screen = awful.screen.preferred,
+      screen = awful.screen.focused,
+      size_hints_honor = false,
+      honor_workarea = true,
+      honor_padding = true,
+      maximized = false,
+      --titlebars_enabled = beautiful.titlebars_enabled,
+      titlebars_enabled = false,
+      maximized_horizontal = false,
+      maximized_vertical = false,
+      placement = floating_client_placement
     },
+  },
 
-    -- Centered clients
-    {
-        rule_any = {
-            type = {
-                "dialog",
-            },
-            class = {
-                "Steam",
-                "discord",
-                "music",
-                "markdown_input",
-                "scratchpad",
-            },
-            instance = {
-                "music",
-                "markdown_input",
-                "scratchpad",
-            },
-            role = {
-                "GtkFileChooserDialog",
-                "conversation",
-            }
-        },
-        properties = { placement = centered_client_placement },
+  -- Centered clients
+  {
+    rule_any = {
+      type = {
+        "dialog",
+      },
+      class = {
+        "Steam",
+        "discord",
+        "music",
+        "markdown_input",
+        "scratchpad",
+      },
+      instance = {
+        "music",
+        "markdown_input",
+        "scratchpad",
+      },
+      role = {
+        "GtkFileChooserDialog",
+        "conversation",
+      }
     },
+    properties = { placement = centered_client_placement },
+  },
 
-    -- Fixed terminal geometry for floating terminals
-    {
-        rule_any = {
-            class = {
-                "Alacritty",
-                "Termite",
-                "mpvtube",
-                "kitty",
-                "st-256color",
-                "st",
-                "URxvt",
-            },
-        },
-        properties = { width = screen_width * 0.45, height = screen_height * 0.5 }
+  -- Fixed terminal geometry for floating terminals
+  {
+    rule_any = {
+      class = {
+        "Alacritty",
+        "Termite",
+        "mpvtube",
+        "kitty",
+        "st-256color",
+        "st",
+        "URxvt",
+      },
     },
+    properties = { width = screen_width * 0.45, height = screen_height * 0.5 }
+  },
 
-    -- Visualizer
-    {
-        rule_any = { class = { "Visualizer" } },
-        properties = {
-            floating = true,
-            maximized_horizontal = true,
-            sticky = true,
-            ontop = false,
-            skip_taskbar = true,
-            below = true,
-            focusable = false,
-            height = screen_height * 0.40,
-            opacity = 0.6,
-            titlebars_enabled = false,
-        },
-        callback = function(c)
-            awful.placement.bottom(c)
+  -- Visualizer
+  {
+    rule_any = { class = { "Visualizer" } },
+    properties = {
+      floating = true,
+      maximized_horizontal = true,
+      sticky = true,
+      ontop = false,
+      skip_taskbar = true,
+      below = true,
+      focusable = false,
+      height = screen_height * 0.40,
+      opacity = 0.6,
+      titlebars_enabled = false,
+    },
+    callback = function(c)
+      awful.placement.bottom(c)
+    end
+  },
+
+  -- File chooser dialog
+  {
+    rule_any = { role = { "GtkFileChooserDialog" } },
+    properties = { floating = true, width = screen_width * 0.55, height = screen_height * 0.65 }
+  },
+
+  -- Pavucontrol
+  {
+    rule_any = { class = { "Pavucontrol" } },
+    properties = { floating = true, width = screen_width * 0.45, height = screen_height * 0.8 }
+  },
+
+  -- Galculator
+  {
+    rule_any = { class = { "Galculator" } },
+    except_any = { type = { "dialog" } },
+    properties = { floating = true, width = screen_width * 0.2, height = screen_height * 0.4 }
+  },
+
+  -- File managers
+  {
+    rule_any = {
+      class = {
+        "Nemo",
+        "Thunar"
+      },
+    },
+    except_any = {
+      type = { "dialog" }
+    },
+    properties = { floating = true, width = screen_width * 0.45, height = screen_height * 0.55 }
+  },
+
+  -- Screenruler
+  {
+    rule_any = { class = { "Screenruler" } },
+    properties = { border_width = 0, floating = true, ontop = true, titlebars_enabled = false },
+    callback = function(c)
+      awful.placement.centered(c, { honor_padding = true, honor_workarea = true })
+    end
+  },
+
+  -- Keepass
+  {
+    rule_any = { class = { "KeePassXC" } },
+    except_any = { name = { "KeePassXC-Browser Confirm Access" }, type = { "dialog" } },
+    properties = { floating = true, width = screen_width * 0.7, height = screen_height * 0.75 },
+  },
+
+  -- Scratchpad
+  {
+    rule_any = {
+      instance = {
+        "scratchpad",
+        "markdown_input"
+      },
+      class = {
+        "scratchpad",
+        "markdown_input"
+      },
+    },
+    properties = {
+      skip_taskbar = false,
+      floating = true,
+      ontop = false,
+      minimized = true,
+      sticky = false,
+      width = screen_width * 0.7,
+      height = screen_height * 0.75
+    }
+  },
+
+  -- Markdown input
+  {
+    rule_any = {
+      instance = {
+        "markdown_input"
+      },
+      class = {
+        "markdown_input"
+      },
+    },
+    properties = {
+      skip_taskbar = false,
+      floating = true,
+      ontop = false,
+      minimized = true,
+      sticky = false,
+      width = screen_width * 0.5,
+      height = screen_height * 0.7
+    }
+  },
+
+  -- Music clients (usually a terminal running ncmpcpp)
+  {
+    rule_any = {
+      class = {
+        "music",
+      },
+      instance = {
+        "music",
+      },
+    },
+    properties = {
+      floating = true,
+      width = screen_width * 0.45,
+      height = screen_height * 0.50
+    },
+  },
+
+  -- Image viewers
+  {
+    rule_any = {
+      class = {
+        "feh",
+        "Sxiv",
+      },
+    },
+    properties = {
+      floating = true,
+      width = screen_width * 0.7,
+      height = screen_height * 0.75
+    },
+    callback = function(c)
+      awful.placement.centered(c, { honor_padding = true, honor_workarea = true })
+    end
+  },
+
+  -- Dragon drag and drop utility
+  {
+    rule_any = {
+      class = {
+        "Dragon-drag-and-drop",
+        "Dragon",
+      },
+    },
+    properties = {
+      floating = true,
+      ontop = true,
+      sticky = true,
+      width = screen_width * 0.3,
+    },
+    callback = function(c)
+      awful.placement.bottom_right(c, {
+        honor_padding = true,
+        honor_workarea = true,
+        margins = { bottom = beautiful.useless_gap * 2, right = beautiful.useless_gap * 2 }
+      })
+    end
+  },
+
+  -- Magit window
+  {
+    rule = { instance = "Magit" },
+    properties = { floating = true, width = screen_width * 0.55, height = screen_height * 0.6 }
+  },
+
+  -- Steam guard
+  {
+    rule = { name = "Steam Guard - Computer Authorization Required" },
+    properties = { floating = true },
+    -- Such a stubborn window, centering it does not work
+    -- callback = function (c)
+    --     gears.timer.delayed_call(function()
+    --         awful.placement.centered(c,{honor_padding = true, honor_workarea=true})
+    --     end)
+    -- end
+  },
+
+  -- MPV
+  {
+    rule = { class = "mpv" },
+    properties = {},
+    callback = function(c)
+      -- Make it floating, ontop and move it out of the way if the current tag is maximized
+      if awful.layout.get(awful.screen.focused()) == awful.layout.suit.max then
+        c.floating = true
+        c.ontop = true
+        c.width = screen_width * 0.30
+        c.height = screen_height * 0.35
+        awful.placement.bottom_right(c, {
+          honor_padding = true,
+          honor_workarea = true,
+          margins = { bottom = beautiful.useless_gap * 2, right = beautiful.useless_gap * 2 }
+        })
+      end
+
+      -- Restore `ontop` after fullscreen is disabled
+      -- Sorta tries to fix: https://github.com/awesomeWM/awesome/issues/667
+      c:connect_signal("property::fullscreen", function()
+        if not c.fullscreen then
+          c.ontop = true
         end
-    },
+      end)
+    end
+  },
 
-    -- File chooser dialog
-    {
-        rule_any = { role = { "GtkFileChooserDialog" } },
-        properties = { floating = true, width = screen_width * 0.55, height = screen_height * 0.65 }
+  -- "Fix" games that minimize on focus loss.
+  -- Usually this can be fixed by launching them with
+  -- SDL_VIDEO_MINIMIZE_ON_FOCUS_LOSS=0 but not all games use SDL
+  {
+    rule_any = {
+      instance = {
+        "synthetik.exe"
+      },
     },
-
-    -- Pavucontrol
-    {
-        rule_any = { class = { "Pavucontrol" } },
-        properties = { floating = true, width = screen_width * 0.45, height = screen_height * 0.8 }
-    },
-
-    -- Galculator
-    {
-        rule_any = { class = { "Galculator" } },
-        except_any = { type = { "dialog" } },
-        properties = { floating = true, width = screen_width * 0.2, height = screen_height * 0.4 }
-    },
-
-    -- File managers
-    {
-        rule_any = {
-            class = {
-                "Nemo",
-                "Thunar"
-            },
-        },
-        except_any = {
-            type = { "dialog" }
-        },
-        properties = { floating = true, width = screen_width * 0.45, height = screen_height * 0.55 }
-    },
-
-    -- Screenruler
-    {
-        rule_any = { class = { "Screenruler" } },
-        properties = { border_width = 0, floating = true, ontop = true, titlebars_enabled = false },
-        callback = function(c)
-            awful.placement.centered(c, { honor_padding = true, honor_workarea = true })
+    properties = {},
+    callback = function(c)
+      -- Unminimize automatically
+      c:connect_signal("property::minimized", function()
+        if c.minimized then
+          c.minimized = false
         end
-    },
+      end)
+    end
+  },
 
-    -- Keepass
-    {
-        rule_any = { class = { "KeePassXC" } },
-        except_any = { name = { "KeePassXC-Browser Confirm Access" }, type = { "dialog" } },
-        properties = { floating = true, width = screen_width * 0.7, height = screen_height * 0.75 },
-    },
+  -- League of Legends client QoL fixes
+  {
+    rule = { instance = "league of legends.exe" },
+    properties = {},
+    callback = function(c)
+      local matcher = function(c)
+        return awful.rules.match(c, { instance = "leagueclientux.exe" })
+      end
+      -- Minimize LoL client after game window opens
+      for c in awful.client.iterate(matcher) do
+        c.urgent = false
+        c.minimized = true
+      end
 
-    -- Scratchpad
-    {
-        rule_any = {
-            instance = {
-                "scratchpad",
-                "markdown_input"
-            },
-            class = {
-                "scratchpad",
-                "markdown_input"
-            },
-        },
-        properties = {
-            skip_taskbar = false,
-            floating = true,
-            ontop = false,
-            minimized = true,
-            sticky = false,
-            width = screen_width * 0.7,
-            height = screen_height * 0.75
-        }
-    },
-
-    -- Markdown input
-    {
-        rule_any = {
-            instance = {
-                "markdown_input"
-            },
-            class = {
-                "markdown_input"
-            },
-        },
-        properties = {
-            skip_taskbar = false,
-            floating = true,
-            ontop = false,
-            minimized = true,
-            sticky = false,
-            width = screen_width * 0.5,
-            height = screen_height * 0.7
-        }
-    },
-
-    -- Music clients (usually a terminal running ncmpcpp)
-    {
-        rule_any = {
-            class = {
-                "music",
-            },
-            instance = {
-                "music",
-            },
-        },
-        properties = {
-            floating = true,
-            width = screen_width * 0.45,
-            height = screen_height * 0.50
-        },
-    },
-
-    -- Image viewers
-    {
-        rule_any = {
-            class = {
-                "feh",
-                "Sxiv",
-            },
-        },
-        properties = {
-            floating = true,
-            width = screen_width * 0.7,
-            height = screen_height * 0.75
-        },
-        callback = function(c)
-            awful.placement.centered(c, { honor_padding = true, honor_workarea = true })
+      -- Unminimize LoL client after game window closes
+      c:connect_signal("unmanage", function()
+        for c in awful.client.iterate(matcher) do
+          c.minimized = false
         end
-    },
-
-    -- Dragon drag and drop utility
-    {
-        rule_any = {
-            class = {
-                "Dragon-drag-and-drop",
-                "Dragon",
-            },
-        },
-        properties = {
-            floating = true,
-            ontop = true,
-            sticky = true,
-            width = screen_width * 0.3,
-        },
-        callback = function(c)
-            awful.placement.bottom_right(c, {
-                honor_padding = true,
-                honor_workarea = true,
-                margins = { bottom = beautiful.useless_gap * 2, right = beautiful.useless_gap * 2 }
-            })
-        end
-    },
-
-    -- Magit window
-    {
-        rule = { instance = "Magit" },
-        properties = { floating = true, width = screen_width * 0.55, height = screen_height * 0.6 }
-    },
-
-    -- Steam guard
-    {
-        rule = { name = "Steam Guard - Computer Authorization Required" },
-        properties = { floating = true },
-        -- Such a stubborn window, centering it does not work
-        -- callback = function (c)
-        --     gears.timer.delayed_call(function()
-        --         awful.placement.centered(c,{honor_padding = true, honor_workarea=true})
-        --     end)
-        -- end
-    },
-
-    -- MPV
-    {
-        rule = { class = "mpv" },
-        properties = {},
-        callback = function(c)
-            -- Make it floating, ontop and move it out of the way if the current tag is maximized
-            if awful.layout.get(awful.screen.focused()) == awful.layout.suit.max then
-                c.floating = true
-                c.ontop = true
-                c.width = screen_width * 0.30
-                c.height = screen_height * 0.35
-                awful.placement.bottom_right(c, {
-                    honor_padding = true,
-                    honor_workarea = true,
-                    margins = { bottom = beautiful.useless_gap * 2, right = beautiful.useless_gap * 2 }
-                })
-            end
-
-            -- Restore `ontop` after fullscreen is disabled
-            -- Sorta tries to fix: https://github.com/awesomeWM/awesome/issues/667
-            c:connect_signal("property::fullscreen", function()
-                if not c.fullscreen then
-                    c.ontop = true
-                end
-            end)
-        end
-    },
-
-    -- "Fix" games that minimize on focus loss.
-    -- Usually this can be fixed by launching them with
-    -- SDL_VIDEO_MINIMIZE_ON_FOCUS_LOSS=0 but not all games use SDL
-    {
-        rule_any = {
-            instance = {
-                "synthetik.exe"
-            },
-        },
-        properties = {},
-        callback = function(c)
-            -- Unminimize automatically
-            c:connect_signal("property::minimized", function()
-                if c.minimized then
-                    c.minimized = false
-                end
-            end)
-        end
-    },
-
-    -- League of Legends client QoL fixes
-    {
-        rule = { instance = "league of legends.exe" },
-        properties = {},
-        callback = function(c)
-            local matcher = function(c)
-                return awful.rules.match(c, { instance = "leagueclientux.exe" })
-            end
-            -- Minimize LoL client after game window opens
-            for c in awful.client.iterate(matcher) do
-                c.urgent = false
-                c.minimized = true
-            end
-
-            -- Unminimize LoL client after game window closes
-            c:connect_signal("unmanage", function()
-                for c in awful.client.iterate(matcher) do
-                    c.minimized = false
-                end
-            end)
-        end
-    },
+      end)
+    end
+  },
 }
 -- (Rules end here) ..................................................
 -- ===================================================================
@@ -673,40 +673,40 @@ awful.rules.rules = {
 -- ===================================================================
 -- Signal function to execute when a new client appears.
 client.connect_signal("manage", function(c)
-    -- For debugging awful.rules
-    -- print('c.class = '..c.class)
-    -- print('c.instance = '..c.instance)
-    -- print('c.name = '..c.name)
+  -- For debugging awful.rules
+  -- print('c.class = '..c.class)
+  -- print('c.instance = '..c.instance)
+  -- print('c.name = '..c.name)
 
-    -- Set every new window as a slave,
-    -- i.e. put it at the end of others instead of setting it master.
-    if not awesome.startup then awful.client.setslave(c) end
+  -- Set every new window as a slave,
+  -- i.e. put it at the end of others instead of setting it master.
+  if not awesome.startup then awful.client.setslave(c) end
 
-    -- if awesome.startup
-    -- and not c.size_hints.user_position
-    -- and not c.size_hints.program_position then
-    --     -- Prevent clients from being unreachable after screen count changes.
-    --     awful.placement.no_offscreen(c)
-    --     awful.placement.no_overlap(c)
-    -- end
+  -- if awesome.startup
+  -- and not c.size_hints.user_position
+  -- and not c.size_hints.program_position then
+  --     -- Prevent clients from being unreachable after screen count changes.
+  --     awful.placement.no_offscreen(c)
+  --     awful.placement.no_overlap(c)
+  -- end
 
 end)
 
 -- When a client starts up in fullscreen, resize it to cover the fullscreen a short moment later
 -- Fixes wrong geometry when titlebars are enabled
 client.connect_signal("manage", function(c)
-    if c.fullscreen then
-        gears.timer.delayed_call(function()
-            if c.valid then
-                c:geometry(c.screen.geometry)
-            end
-        end)
-    end
+  if c.fullscreen then
+    gears.timer.delayed_call(function()
+      if c.valid then
+        c:geometry(c.screen.geometry)
+      end
+    end)
+  end
 end)
 
 if beautiful.border_width > 0 then
-    client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
-    client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
+  client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
+  client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 end
 
 -- Set mouse resize mode (live or after)
@@ -716,26 +716,26 @@ awful.mouse.resize.set_mode("live")
 -- (for example after swapping from tiling mode to floating mode)
 -- ==============================================================
 tag.connect_signal('property::layout', function(t)
-    for k, c in ipairs(t:clients()) do
-        if awful.layout.get(mouse.screen) == awful.layout.suit.floating then
-            local cgeo = awful.client.property.get(c, 'floating_geometry')
-            if cgeo then
-                c:geometry(awful.client.property.get(c, 'floating_geometry'))
-            end
-        end
+  for k, c in ipairs(t:clients()) do
+    if awful.layout.get(mouse.screen) == awful.layout.suit.floating then
+      local cgeo = awful.client.property.get(c, 'floating_geometry')
+      if cgeo then
+        c:geometry(awful.client.property.get(c, 'floating_geometry'))
+      end
     end
+  end
 end)
 
 client.connect_signal('manage', function(c)
-    if awful.layout.get(mouse.screen) == awful.layout.suit.floating then
-        awful.client.property.set(c, 'floating_geometry', c:geometry())
-    end
+  if awful.layout.get(mouse.screen) == awful.layout.suit.floating then
+    awful.client.property.set(c, 'floating_geometry', c:geometry())
+  end
 end)
 
 client.connect_signal('property::geometry', function(c)
-    if awful.layout.get(mouse.screen) == awful.layout.suit.floating then
-        awful.client.property.set(c, 'floating_geometry', c:geometry())
-    end
+  if awful.layout.get(mouse.screen) == awful.layout.suit.floating then
+    awful.client.property.set(c, 'floating_geometry', c:geometry())
+  end
 end)
 
 -- ==============================================================
@@ -747,14 +747,14 @@ end)
 -- unfocused but still covers all other windows (even the currently
 -- focused window).
 awful.tag.attached_connect_signal(s, "property::selected", function()
-    local urgent_clients = function(c)
-        return awful.rules.match(c, { urgent = true })
+  local urgent_clients = function(c)
+    return awful.rules.match(c, { urgent = true })
+  end
+  for c in awful.client.iterate(urgent_clients) do
+    if c.first_tag == mouse.screen.selected_tag then
+      client.focus = c
     end
-    for c in awful.client.iterate(urgent_clients) do
-        if c.first_tag == mouse.screen.selected_tag then
-            client.focus = c
-        end
-    end
+  end
 end)
 
 -- Raise focused clients automatically
@@ -772,14 +772,14 @@ client.connect_signal("focus", function(c) c:raise() end)
 -- when the client is floating again
 -- I never want a non floating client to be ontop.
 client.connect_signal('property::floating', function(c)
-    if c.floating then
-        if c.restore_ontop then
-            c.ontop = c.restore_ontop
-        end
-    else
-        c.restore_ontop = c.ontop
-        c.ontop = false
+  if c.floating then
+    if c.restore_ontop then
+      c.ontop = c.restore_ontop
     end
+  else
+    c.restore_ontop = c.ontop
+    c.ontop = false
+  end
 end)
 
 -- Disconnect the client ability to request different size and position
@@ -792,12 +792,12 @@ end)
 local dashboard_flag_path = "/tmp/awesomewm-show-dashboard"
 -- Check if file exists
 awful.spawn.easy_async_with_shell("stat " .. dashboard_flag_path .. " >/dev/null 2>&1", function(_, __, ___, exitcode)
-    if exitcode == 0 then
-        -- Show dashboard
-        if dashboard_show then dashboard_show() end
-        -- Delete the file
-        awful.spawn.with_shell("rm " .. dashboard_flag_path)
-    end
+  if exitcode == 0 then
+    -- Show dashboard
+    if dashboard_show then dashboard_show() end
+    -- Delete the file
+    awful.spawn.with_shell("rm " .. dashboard_flag_path)
+  end
 end)
 
 -- Garbage collection
