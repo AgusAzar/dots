@@ -27,6 +27,8 @@ Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'L3MON4D3/LuaSnip'
 
+Plug 'mattn/emmet-vim'
+
 "auto pairs
 Plug 'windwp/nvim-autopairs'
 
