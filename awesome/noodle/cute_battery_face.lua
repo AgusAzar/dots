@@ -1,7 +1,9 @@
-local awful = require("awful")
-local gears = require("gears")
-local wibox = require("wibox")
+local awful     = require("awful")
+local gears     = require("gears")
+local wibox     = require("wibox")
 local beautiful = require("beautiful")
+local naughty   = require("naughty")
+
 
 local helpers = require("helpers")
 
@@ -31,6 +33,7 @@ local battery_bar = wibox.widget {
   color            = happy_color,
   background_color = happy_color .. "55",
   widget           = wibox.widget.progressbar,
+  visible          = false
 }
 
 local charging_icon = wibox.widget {
@@ -116,7 +119,6 @@ local cute_battery_face = wibox.widget {
     border_color = stroke,
     border_width = dpi(4),
     widget = wibox.container.background,
-    visible = false
   },
   {
     nil,
@@ -141,7 +143,8 @@ local cute_battery_face = wibox.widget {
 local last_value = 100
 awesome.connect_signal("evil::battery", function(value)
   -- Update bar
-  cute_battery_face.visible = true;
+  naughty.notify({ title = "Bateria" })
+  battery_bar.visible = true;
   battery_bar.value = value
   last_value = value
   local color
