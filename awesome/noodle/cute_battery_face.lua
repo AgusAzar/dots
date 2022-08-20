@@ -143,7 +143,6 @@ local cute_battery_face = wibox.widget {
 local last_value = 100
 awesome.connect_signal("evil::battery", function(value)
   -- Update bar
-  naughty.notify({ title = "Bateria" })
   battery_bar.visible = true;
   battery_bar.value = value
   last_value = value
