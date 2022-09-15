@@ -37,7 +37,7 @@ local bar_themes = {
   "ephemeral", -- 4 -- Taglist, start button, tasklist, and more buttons
   "amarena", -- 5 -- Minimal taglist and dock with autohide
 }
-local bar_theme = bar_themes[4]
+local bar_theme = bar_themes[5]
 
 -- ===================================================================
 -- Affects which icon theme will be used by widgets that display image icons.
@@ -104,7 +104,7 @@ user = {
 
   -- >> Sidebar <<
   sidebar = {
-    hide_on_mouse_leave = false,
+    hide_on_mouse_leave = true,
     show_on_mouse_screen_edge = false,
   },
 
