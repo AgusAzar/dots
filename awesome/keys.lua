@@ -2,83 +2,15 @@ local awful = require("awful")
 local naughty = require("naughty")
 local gears = require("gears")
 local beautiful = require("beautiful")
-local apps = require("apps")
-local decorations = require("decorations")
-
 local helpers = require("helpers")
 
 local keys = {}
 
 -- Mod keys
-superkey = "Mod4"
-altkey = "Mod1"
-ctrlkey = "Control"
-shiftkey = "Shift"
-
--- {{{ Mouse bindings on desktop
-keys.desktopbuttons = gears.table.join(
-  awful.button({}, 1, function()
-    -- Single tap
-    awesome.emit_signal("elemental::dismiss")
-    naughty.destroy_all_notifications()
-    if mymainmenu then
-      mymainmenu:hide()
-    end
-    if sidebar_hide then
-      sidebar_hide()
-    end
-    -- Double tap
-    local function double_tap()
-      uc = awful.client.urgent.get()
-      -- If there is no urgent client, go back to last tag
-      if uc == nil then
-        awful.tag.history.restore()
-      else
-        awful.client.urgent.jumpto()
-      end
-    end
-
-    helpers.single_double_tap(function() end, double_tap)
-  end),
-
-  -- Right click - Show app drawer
-  -- awful.button({ }, 3, function () mymainmenu:toggle() end),
-  awful.button({}, 3, function()
-    if app_drawer_show then
-      app_drawer_show()
-    end
-  end),
-
-  -- Middle button - Toggle dashboard
-  awful.button({}, 2, function()
-    if dashboard_show then
-      dashboard_show()
-    end
-  end),
-
-  -- Scrolling - Switch tags
-  awful.button({}, 4, awful.tag.viewprev),
-  awful.button({}, 5, awful.tag.viewnext),
-
-  -- Side buttons - Control volume
-  awful.button({}, 9, function() helpers.volume_control(5) end),
-  awful.button({}, 8, function() helpers.volume_control(-5) end)
-
--- Side buttons - Minimize and restore minimized client
--- awful.button({ }, 8, function()
---     if client.focus ~= nil then
---         client.focus.minimized = true
---     end
--- end),
--- awful.button({ }, 9, function()
---       local c = awful.client.restore()
---       -- Focus restored client
---       if c then
---           client.focus = c
---       end
--- end)
-)
--- }}}
+local superkey = "Mod4"
+local altkey = "Mod1"
+local ctrlkey = "Control"
+local shiftkey = "Shift"
 
 -- {{{ Key bindings
 keys.globalkeys = gears.table.join(
@@ -107,7 +39,7 @@ keys.globalkeys = gears.table.join(
   -- Window switcher
   awful.key({ superkey }, "Tab",
     function()
-      window_switcher_show(awful.screen.focused())
+      awful.tag.history.restore()
     end,
     { description = "activate window switcher", group = "client" }),
 
@@ -167,7 +99,7 @@ keys.globalkeys = gears.table.join(
   -- to the last tag
   awful.key({ superkey, }, "u",
     function()
-      uc = awful.client.urgent.get()
+      local uc = awful.client.urgent.get()
       -- If there is no urgent client, go back to last tag
       if uc == nil then
         awful.tag.history.restore()
@@ -179,16 +111,16 @@ keys.globalkeys = gears.table.join(
 
   awful.key({ superkey, }, "x",
     function()
-      awful.tag.history.restore()
+      awful.screen.focused().mypromptbox:run()
     end,
     { description = "go back", group = "tag" }),
 
   -- Spawn terminal
-  awful.key({ superkey }, "Return", function() awful.spawn(user.terminal) end,
+  awful.key({ superkey }, "Return", function() awful.spawn(terminal) end,
     { description = "open a terminal", group = "launcher" }),
   -- Spawn floating terminal
   awful.key({ superkey, shiftkey }, "Return", function()
-    awful.spawn(user.floating_terminal, { floating = true })
+    awful.spawn(terminal, { floating = true })
   end,
     { description = "spawn floating terminal", group = "launcher" }),
 
@@ -284,25 +216,6 @@ keys.globalkeys = gears.table.join(
     end,
     { description = "rofi launcher", group = "launcher" }),
 
-  -- Run
-  --awful.key({ superkey }, "r",
-  --    function ()
-  --        -- Not all sidebars have a prompt
-  --        if sidebar_activate_prompt then
-  --            sidebar_activate_prompt("run")
-  --        end
-  --    end,
-  --    {description = "activate sidebar run prompt", group = "awesome"}),
-  -- Web search
-  awful.key({ superkey }, "g",
-    function()
-      -- Not all sidebars have a prompt
-      if sidebar_activate_prompt then
-        sidebar_activate_prompt("web_search")
-      end
-    end,
-    { description = "activate sidebar web search prompt", group = "awesome" }),
-
   -- Dismiss notifications and elements that connect to the dismiss signal
   awful.key({ ctrlkey }, "space",
     function()
@@ -310,10 +223,6 @@ keys.globalkeys = gears.table.join(
       naughty.destroy_all_notifications()
     end,
     { description = "dismiss notification", group = "notifications" }),
-
-  -- Menubar
-  --awful.key({ superkey, ctrlkey }, "b", function() menubar.show() end,
-  --{description = "show the menubar", group = "launcher"}),
 
   -- Brightness
   awful.key({}, "XF86MonBrightnessDown",
@@ -361,23 +270,12 @@ keys.globalkeys = gears.table.join(
     end,
     { description = "raise volume", group = "volume" }),
 
-  -- Screenkey toggle
-  awful.key({ superkey }, "F12", apps.screenkey,
-    { description = "raise volume", group = "volume" }),
-
   -- Microphone (V for voice)
   awful.key({ superkey }, "v",
     function()
       awful.spawn.with_shell("pactl set-source-mute @DEFAULT_SOURCE@ toggle")
     end,
     { description = "(un)mute microphone", group = "volume" }),
-
-  -- Microphone overlay
-  awful.key({ superkey, shiftkey }, "v",
-    function()
-      microphone_overlay_toggle()
-    end,
-    { description = "toggle microphone overlay", group = "volume" }),
 
   awful.key({}, "Print",
     function()
@@ -393,25 +291,10 @@ keys.globalkeys = gears.table.join(
     { description = "toggle pause/play", group = "media" }),
   awful.key({}, "XF86AudioPause", function() awful.spawn.with_shell("playerctl play-pause") end,
     { description = "toggle pause/play", group = "media" }),
-
-  awful.key({ superkey, shiftkey }, "F7", function() awful.spawn.with_shell("freeze -u firefox") end,
-    { description = "send CONT signal to all firefox processes", group = "other" }),
-  awful.key({ superkey }, "q", function() apps.scratchpad() end,
-    { description = "scratchpad", group = "launcher" }),
   -- Tiling
-  -- Single tap: Set tiled layout
-  -- Double tap: Also disable floating for ALL visible clients in the tag
   awful.key({ superkey }, "s",
     function()
       awful.layout.set(awful.layout.suit.tile)
-      helpers.single_double_tap(
-        nil,
-        function()
-          local clients = awful.screen.focused().clients
-          for _, c in pairs(clients) do
-            c.floating = false
-          end
-        end)
     end,
     { description = "set tiled layout", group = "tag" }),
   -- Set floating layout
@@ -419,73 +302,11 @@ keys.globalkeys = gears.table.join(
     awful.layout.set(awful.layout.suit.floating)
   end,
     { description = "set floating layout", group = "tag" }),
-  -- Dashboard
-  awful.key({ superkey }, "F1", function()
-    if dashboard_show then
-      dashboard_show()
-    end
-    -- rofi_show()
-  end, { description = "dashboard", group = "custom" }),
-
-  -- App drawer
-  awful.key({ superkey }, "a", function()
-    app_drawer_show()
-  end,
-    { description = "App drawer", group = "custom" }),
-
-  -- Pomodoro timer
-  awful.key({ superkey }, "slash", function()
-    awful.spawn.with_shell("pomodoro")
-  end,
-    { description = "pomodoro", group = "launcher" }),
-  -- Spawn file manager
-  awful.key({ superkey }, "F2", apps.file_manager,
-    { description = "file manager", group = "launcher" }),
-  -- Spawn music client
-  awful.key({ superkey }, "F3", apps.music,
-    { description = "music client", group = "launcher" }),
-  -- Spawn cava in a terminal
-  awful.key({ superkey }, "F4", function() awful.spawn("visualizer") end,
-    { description = "cava", group = "launcher" }),
-  -- Spawn ncmpcpp in a terminal, with a special visualizer config
-  awful.key({ superkey, shiftkey }, "F4",
-    function() awful.spawn(user.terminal .. " -e 'ncmpcpp -c ~/.config/ncmpcpp/config_visualizer -s visualizer'") end,
-    { description = "ncmpcpp", group = "launcher" }),
-  -- Network dialog: nmapplet rofi frontend
-  awful.key({ superkey }, "F11", function() awful.spawn("networks-rofi") end,
-    { description = "spawn network dialog", group = "launcher" }),
-  -- Toggle sidebar
-  awful.key({ superkey }, "grave", function() sidebar_toggle() end,
-    { description = "show or hide sidebar", group = "awesome" }),
-  -- Toggle wibar(s)
-  awful.key({ superkey }, "b", function() wibars_toggle() end,
-    { description = "show or hide wibar(s)", group = "awesome" }),
-  -- Emacs (O for org mode)
-  awful.key({ superkey }, "o", apps.org,
-    { description = "emacs", group = "launcher" }),
-  -- Markdown input scratchpad (I for input)
-  -- For quickly typing markdown comments and pasting them in
-  -- the browser
-  awful.key({ superkey }, "i", apps.markdown_input,
-    { description = "markdown scratchpad", group = "launcher" }),
   -- Editor
-  awful.key({ superkey }, "e", apps.editor,
-    { description = "editor", group = "launcher" }),
-  -- Quick edit file
-  awful.key({ superkey, shiftkey }, "e",
-    function()
-      awful.spawn.with_shell("rofi_edit")
-    end,
-    { description = "quick edit file", group = "launcher" }),
-  -- Rofi youtube search and playlist selector
-  awful.key({ superkey }, "y", apps.youtube,
-    { description = "youtube search and play", group = "launcher" }),
-  -- Spawn file manager
-  awful.key({ superkey, shiftkey }, "f", apps.file_manager,
-    { description = "file manager", group = "launcher" }),
-  -- Process monitor
-  awful.key({ superkey }, "p", apps.process_monitor,
-    { description = "process monitor", group = "launcher" })
+  awful.key({ superkey }, "e", function()
+    awful.spawn(editor_cmd)
+  end,
+    { description = "editor", group = "launcher" })
 )
 
 keys.clientkeys = gears.table.join(
@@ -501,17 +322,6 @@ keys.clientkeys = gears.table.join(
   end),
   awful.key({ superkey, shiftkey }, "l", function(c)
     helpers.move_client_dwim(c, "right")
-  end),
-
-  -- Single tap: Center client
-  -- Double tap: Center client + Floating + Resize
-  awful.key({ superkey }, "c", function(c)
-    awful.placement.centered(c, { honor_workarea = true, honor_padding = true })
-    helpers.single_double_tap(
-      nil,
-      function()
-        helpers.float_and_resize(c, screen_width * 0.65, screen_height * 0.9)
-      end)
   end),
 
   -- Relative move client
@@ -543,7 +353,7 @@ keys.clientkeys = gears.table.join(
   -- Toggle titlebars (for focused client only)
   awful.key({ superkey, }, "t",
     function(c)
-      decorations.cycle(c)
+      awful.titlebar.toggle(c, beautiful.titlebar_position)
     end,
     { description = "toggle titlebar", group = "client" }),
   -- Toggle titlebars (for all visible clients in selected tag)
@@ -745,128 +555,6 @@ keys.clientbuttons = gears.table.join(
   end)
 )
 
--- Mouse buttons on the tasklist
--- Use 'Any' modifier so that the same buttons can be used in the floating
--- tasklist displayed by the window switcher while the superkey is pressed
-keys.tasklist_buttons = gears.table.join(
-  awful.button({ 'Any' }, 1,
-    function(c)
-      if c == client.focus then
-        c.minimized = true
-      else
-        -- Without this, the following
-        -- :isvisible() makes no sense
-        c.minimized = false
-        if not c:isvisible() and c.first_tag then
-          c.first_tag:view_only()
-        end
-        -- This will also un-minimize
-        -- the client, if needed
-        client.focus = c
-      end
-    end),
-  -- Middle mouse button closes the window (on release)
-  awful.button({ 'Any' }, 2, nil, function(c) c:kill() end),
-  awful.button({ 'Any' }, 3, function(c) c.minimized = true end),
-  awful.button({ 'Any' }, 4, function()
-    awful.client.focus.byidx(-1)
-  end),
-  awful.button({ 'Any' }, 5, function()
-    awful.client.focus.byidx(1)
-  end),
-
-  -- Side button up - toggle floating
-  awful.button({ 'Any' }, 9, function(c)
-    c.floating = not c.floating
-  end),
-  -- Side button down - toggle ontop
-  awful.button({ 'Any' }, 8, function(c)
-    c.ontop = not c.ontop
-  end)
-)
-
--- Mouse buttons on a tag of the taglist widget
-keys.taglist_buttons = gears.table.join(
-  awful.button({}, 1, function(t)
-    -- t:view_only()
-    helpers.tag_back_and_forth(t.index)
-  end),
-  awful.button({ superkey }, 1, function(t)
-    if client.focus then
-      client.focus:move_to_tag(t)
-    end
-  end),
-  -- awful.button({ }, 3, awful.tag.viewtoggle),
-  awful.button({}, 3, function(t)
-    if client.focus then
-      client.focus:move_to_tag(t)
-    end
-  end),
-  awful.button({ superkey }, 3, function(t)
-    if client.focus then
-      client.focus:toggle_tag(t)
-    end
-  end),
-  awful.button({}, 4, function(t) awful.tag.viewprev(t.screen) end),
-  awful.button({}, 5, function(t) awful.tag.viewnext(t.screen) end)
-)
-
-
--- Mouse buttons on the primary titlebar of the window
-keys.titlebar_buttons = gears.table.join(
--- Left button - move
--- (Double tap - Toggle maximize) -- A little BUGGY
-  awful.button({}, 1, function()
-    local c = mouse.object_under_pointer()
-    client.focus = c
-    awful.mouse.client.move(c)
-    -- local function single_tap()
-    --   awful.mouse.client.move(c)
-    -- end
-    -- local function double_tap()
-    --   gears.timer.delayed_call(function()
-    --       c.maximized = not c.maximized
-    --   end)
-    -- end
-    -- helpers.single_double_tap(single_tap, double_tap)
-    -- helpers.single_double_tap(nil, double_tap)
-  end),
-  -- Middle button - close
-  awful.button({}, 2, function()
-    local c = mouse.object_under_pointer()
-    c:kill()
-  end),
-  -- Right button - resize
-  awful.button({}, 3, function()
-    local c = mouse.object_under_pointer()
-    client.focus = c
-    awful.mouse.client.resize(c)
-    -- awful.mouse.resize(c, nil, {jump_to_corner=true})
-  end),
-  -- Side button up - toggle floating
-  awful.button({}, 9, function()
-    local c = mouse.object_under_pointer()
-    client.focus = c
-    --awful.placement.centered(c,{honor_padding = true, honor_workarea=true})
-    c.floating = not c.floating
-  end),
-  -- Side button down - toggle ontop
-  awful.button({}, 8, function()
-    local c = mouse.object_under_pointer()
-    client.focus = c
-    c.ontop = not c.ontop
-    -- Double Tap - toggle sticky
-    -- local function single_tap()
-    --   c.ontop = not c.ontop
-    -- end
-    -- local function double_tap()
-    --   c.sticky = not c.sticky
-    -- end
-    -- helpers.single_double_tap(single_tap, double_tap)
-  end)
-)
-
--- }}}
 
 -- Set root (desktop) keys
 root.keys(keys.globalkeys)

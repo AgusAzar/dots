@@ -21,7 +21,7 @@ local button_size = dpi(120)
 
 -- Commands
 local poweroff_command = function()
-  awful.spawn("poweroff")
+  awful.spawn.with_shell("poweroff")
 end
 local reboot_command = function()
   awful.spawn.with_shell("reboot")
