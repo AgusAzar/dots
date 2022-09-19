@@ -2,8 +2,76 @@ local awful = require("awful")
 require("awful.autofocus")
 local wibox = require("wibox")
 local gears = require("gears")
+local helpers = require("helpers")
+local beautiful = require("beautiful")
+local naughty = require("naughty")
 
 mytextclock = wibox.widget.textclock()
+-- battery widget
+local bat_icon = wibox.widget {
+  markup = "<span foreground='" .. x.color0 .. "'>⚡</span>",
+  font = "Symbols Nerd Font " .. "10",
+  align = "center",
+  valign = "center",
+  widget = wibox.widget.textbox
+}
+
+local battery_progress = wibox.widget {
+  color            = x.color2,
+  background_color = x.foreground .. "00",
+  forced_width     = dpi(27),
+  border_width     = dpi(0.5),
+  border_color     = x.foreground .. "A6",
+  paddings         = dpi(2),
+  bar_shape        = helpers.rrect(dpi(2)),
+  shape            = helpers.rrect(dpi(4)),
+  value            = 70,
+  max_value        = 100,
+  widget           = wibox.widget.progressbar,
+}
+
+local battery_border_thing = wibox.widget {
+  wibox.widget.textbox,
+  widget        = wibox.container.background,
+  border_width  = dpi(0),
+  bg            = x.foreground .. "A6",
+  forced_width  = dpi(8),
+  forced_height = dpi(8),
+  shape         = function(cr, width, height)
+    gears.shape.pie(cr, width, height, math.pi / 2, -math.pi / 2)
+  end
+}
+
+local battery = wibox.widget {
+  {
+    {
+      {
+        battery_border_thing,
+        widget = wibox.container.place
+      },
+      {
+        {
+          battery_progress,
+          direction = "south",
+          widget = wibox.container.rotate
+        },
+        layout = wibox.container.margin,
+        margins = { top = dpi(5), bottom = dpi(5) }
+      },
+      layout = wibox.layout.fixed.horizontal,
+      spacing = dpi(-5),
+    },
+    {
+      bat_icon,
+      margins = { top = dpi(3) },
+      widget = wibox.container.margin,
+    },
+    layout = wibox.layout.fixed.horizontal,
+  },
+  widget = wibox.container.margin,
+  margins = { left = dpi(7.47), right = dpi(7.47) }
+}
+-- Eo battery
 screen.connect_signal("request::desktop_decoration", function(s)
   awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
 
@@ -102,6 +170,7 @@ screen.connect_signal("request::desktop_decoration", function(s)
       widget = wibox.container.background,
     },
   }
+  -----------------------------------------------------
 
   -- Create the wibox
   s.mywibox = awful.wibar {
@@ -120,8 +189,22 @@ screen.connect_signal("request::desktop_decoration", function(s)
       { -- Right widgets
         layout = wibox.layout.fixed.horizontal,
         wibox.widget.systray(),
+        battery,
         s.mylayoutbox,
       },
     }
   }
+end)
+
+
+-- update widgets accordingly
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~
+awesome.connect_signal("signal::battery", function(value, state)
+  battery_progress.value = value
+  if state == 1 then
+    bat_icon.visible = true
+  else
+    bat_icon.visible = false
+  end
+
 end)

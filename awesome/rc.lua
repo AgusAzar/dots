@@ -20,7 +20,7 @@ beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
 terminal = "kitty"
 editor = os.getenv("EDITOR") or "nvim"
 editor_cmd = terminal .. " -e " .. editor
-local modkey = "Mod4"
+modkey = "Mod4"
 local xrdb = beautiful.xresources.get_current_theme()
 dpi = beautiful.xresources.apply_dpi
 x = {
@@ -226,6 +226,7 @@ end)
 --custom config
 require("elemental.bar")
 require("elemental.exit_screen.ephemeral")
+require("signals")
 
 beautiful.useless_gap = 10
 
