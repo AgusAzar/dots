@@ -1,4 +1,4 @@
--- keybinds haha
+-- keybinds hahake
 -- ~~~~~~~~~~~~~
 
 
@@ -45,6 +45,10 @@ awful.keyboard.append_global_keybindings({
   end,
     { description = "open web browser", group = "launcher" }),
 
+  awful.key({ modkey }, "e", function()
+    awful.spawn.with_shell(user_likes.editor)
+  end,
+    { description = "open editor", group = "launcher" }),
   awful.key({ modkey }, "space", function()
     awful.spawn(misc.rofiCommand)
   end,
@@ -165,11 +169,6 @@ awful.keyboard.append_global_keybindings({
     { description = "focus right", group = "client" }),
 
 
-  awful.key({ modkey }, "Tab",
-    function()
-      awful.tag.history.restore()
-    end,
-    { description = "window switcher", group = "client" }),
 
   -- Focus client by index (cycle through clients)
   awful.key({ modkey }, "z",
