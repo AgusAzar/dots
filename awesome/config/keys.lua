@@ -185,7 +185,7 @@ awful.keyboard.append_global_keybindings({
     { description = "focus next by index", group = "client" }),
 
 
-  awful.key({ modkey, ctrl }, "n",
+  awful.key({ modkey, shift }, "n",
     function()
       local c = awful.client.restore()
       if c then

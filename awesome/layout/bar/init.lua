@@ -206,8 +206,6 @@ awful.screen.connect_for_each_screen(function(s)
   s.wibar_wid = awful.wibar({
     screen  = s,
     visible = true,
-    ontop   = true,
-    type    = "dock",
     height  = dpi(45),
     shape   = helpers.rrect(0),
     bg      = beautiful.bg_color,
