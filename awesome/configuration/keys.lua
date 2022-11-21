@@ -63,37 +63,16 @@ awful.keyboard.append_global_keybindings({
 	--- ~~~~~~
 	--- Focus client by direction
 	awful.key({ mod }, "k", function()
-		awful.client.focus.bydirection("up")
-		bling.module.flash_focus.flashfocus(client.focus)
+		awful.client.focus.global_bydirection("up")
 	end, { description = "focus up", group = "client" }),
 	awful.key({ mod }, "j", function()
-		awful.client.focus.bydirection("down")
-		bling.module.flash_focus.flashfocus(client.focus)
+		awful.client.focus.global_bydirection("down")
 	end, { description = "focus down", group = "client" }),
 	awful.key({ mod }, "h", function()
-		awful.client.focus.bydirection("left")
-		bling.module.flash_focus.flashfocus(client.focus)
+		awful.client.focus.global_bydirection("left")
 	end, { description = "focus left", group = "client" }),
 	awful.key({ mod }, "l", function()
-		awful.client.focus.bydirection("right")
-		bling.module.flash_focus.flashfocus(client.focus)
-	end, { description = "focus right", group = "client" }),
-
-	awful.key({ mod }, "Up", function()
-		awful.client.focus.bydirection("up")
-		bling.module.flash_focus.flashfocus(client.focus)
-	end, { description = "focus up", group = "client" }),
-	awful.key({ mod }, "Down", function()
-		awful.client.focus.bydirection("down")
-		bling.module.flash_focus.flashfocus(client.focus)
-	end, { description = "focus down", group = "client" }),
-	awful.key({ mod }, "Left", function()
-		awful.client.focus.bydirection("left")
-		bling.module.flash_focus.flashfocus(client.focus)
-	end, { description = "focus left", group = "client" }),
-	awful.key({ mod }, "Right", function()
-		awful.client.focus.bydirection("right")
-		bling.module.flash_focus.flashfocus(client.focus)
+		awful.client.focus.global_bydirection("right")
 	end, { description = "focus right", group = "client" }),
 
 	--- Resize focused client
@@ -438,8 +417,8 @@ awful.keyboard.append_global_keybindings({
 
 -- Screen
 -----------
---awful.keyboard.append_global_keybindings({
 -- No need for these (single screen setup)
+--awful.keyboard.append_global_keybindings({
 --awful.key({ superkey, ctrlkey }, "j", function () awful.screen.focus_relative( 1) end,
 --{description = "focus the next screen", group = "screen"}),
 --awful.key({ superkey, ctrlkey }, "k", function () awful.screen.focus_relative(-1) end,

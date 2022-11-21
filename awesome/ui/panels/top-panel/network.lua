@@ -31,7 +31,7 @@ return function()
 	})
 
 	watch(
-		[[sh -c " netctl-auto list | grep \* "]],
+		[[sh -c "{echo $(netctl-auto list | grep \*); echo $(netctl list | grep \*)} | tr '\n' '\n' "]],
 		5,
 		function(_, stdout)
 			if string.len(stdout) > 0 then
@@ -40,6 +40,7 @@ return function()
 					]]
 				awful.spawn.easy_async_with_shell(getstrength, function(stdout)
 					if not tonumber(stdout) then
+						network.icon:set_text("")
 						return
 					end
 					local strength = tonumber(stdout)
