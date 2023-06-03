@@ -167,7 +167,7 @@ awful.keyboard.append_global_keybindings({
 	--- Color picker
 	--- Screenshots
 	awful.key({}, "Print", function()
-		awful.spawn.easy_async_with_shell(apps.utils.full_screenshot, function() end)
+		awful.spawn('flameshot gui')
 	end, { description = "take a full screenshot", group = "hotkeys" }),
 
 	awful.key({ alt }, "Print", function()
@@ -183,6 +183,16 @@ awful.keyboard.append_global_keybindings({
 	awful.key({ mod }, "Escape", function()
 		awesome.emit_signal("module::exit_screen:show")
 	end, { description = "exit screen", group = "hotkeys" }),
+
+
+  --- Un-minimize windows
+  awful.key({ mod, ctrl }, "n", function()
+    local c = awful.client.restore()
+    -- Focus restored client
+    if c then
+      c:activate({ raise = true, context = "key.unminimize" })
+    end
+  end, { description = "restore minimized", group = "client" }),
 })
 
 --- Client key bindings
@@ -274,14 +284,6 @@ client.connect_signal("request::default_keybindings", function()
 			c.minimized = true
 		end, { description = "minimize", group = "client" }),
 
-		--- Un-minimize windows
-		awful.key({ mod, ctrl }, "n", function()
-			local c = awful.client.restore()
-			-- Focus restored client
-			if c then
-				c:activate({ raise = true, context = "key.unminimize" })
-			end
-		end, { description = "restore minimized", group = "client" }),
 
 		--- Keep on top
 		awful.key({ mod }, "p", function(c)

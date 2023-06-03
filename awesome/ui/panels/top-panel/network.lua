@@ -31,7 +31,7 @@ return function()
 	})
 
 	watch(
-		[[sh -c "{echo $(netctl-auto list | grep \*); echo $(netctl list | grep \*)} | tr '\n' '\n' "]],
+		[[sh -c " netctl-auto list | grep \* ; netctl list | grep \*"]],
 		5,
 		function(_, stdout)
 			if string.len(stdout) > 0 then

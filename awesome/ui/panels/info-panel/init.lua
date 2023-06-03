@@ -61,16 +61,6 @@ return function(s)
 
 	--- Calendar
 	s.calendar = require("ui.panels.info-panel.calendar")()
-	local calendar = wibox.widget({
-		{
-			s.calendar,
-			margins = dpi(16),
-			widget = wibox.container.margin,
-		},
-		bg = beautiful.one_bg3,
-		shape = helpers.ui.rrect(beautiful.border_radius),
-		widget = wibox.container.background,
-	})
 
 	--- Weather
 	s.weather = require("ui.panels.info-panel.weather")
@@ -127,7 +117,7 @@ return function(s)
 							helpers.ui.vertical_pad(dpi(30)),
 							{
 								nil,
-								calendar,
+								s.calendar,
 								expand = "none",
 								layout = wibox.layout.align.horizontal,
 							},

@@ -48,4 +48,6 @@ return require('packer').startup(function(use)
     use 'kyazdani42/nvim-web-devicons'
     -- Status line
     use 'nvim-lualine/lualine.nvim'
+    --laTex
+    use 'lervag/vimtex'
 end)
