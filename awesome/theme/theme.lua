@@ -104,7 +104,7 @@ end
 theme.accent = theme.color4
 
 --- UI events
-theme.leave_event = transparent
+theme.leave_event = theme.transparent
 theme.enter_event = "#ffffff" .. "10"
 theme.press_event = "#ffffff" .. "15"
 theme.release_event = "#ffffff" .. "10"
@@ -183,10 +183,10 @@ theme.layout_machi = icons.machi
 theme.icon_theme = "WhiteSur-dark"
 
 --- Borders
-theme.border_width = 0
+theme.border_width = 5
 theme.oof_border_width = 0
 theme.border_color_marked = theme.titlebar_bg
-theme.border_color_active = theme.titlebar_bg
+theme.border_color_active = theme.color4
 theme.border_color_normal = theme.titlebar_bg
 theme.border_color_new = theme.titlebar_bg
 theme.border_color_urgent = theme.titlebar_bg
@@ -240,7 +240,7 @@ theme.layoutlist_shape_selected = helpers.ui.rrect(theme.border_radius)
 theme.layoutlist_bg_selected = theme.widget_bg
 
 --- Gaps
-theme.useless_gap = dpi(5)
+theme.useless_gap = dpi(10)
 
 --- Systray
 theme.systray_icon_size = dpi(20)

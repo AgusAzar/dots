@@ -186,7 +186,7 @@ awful.keyboard.append_global_keybindings({
 
 
   --- Un-minimize windows
-  awful.key({ mod, ctrl }, "n", function()
+  awful.key({ mod, shift }, "n", function()
     local c = awful.client.restore()
     -- Focus restored client
     if c then
