@@ -1,0 +1,9 @@
+#!/bin/bash
+
+BAT=`ls /sys/class/power_supply | grep BAT | head -n 1`
+if [[ "$1" == "--bat" ]]; then
+    cat /sys/class/power_supply/${BAT}/capacity
+elif [[ "$1" == "--bat-st" ]]; then
+	cat /sys/class/power_supply/${BAT}/status
+fi
+
